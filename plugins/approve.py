@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 # Configuration options (can be extended as needed)
 CONFIG = {
-    "bot_username": "REXIESCATBOT",
+    "bot_username": "TEAMILLUMINIXBOT",
     "main_channel_url": "https://t.me/MW_BOTS",
     "support_channel_url": "https://t.me/MW_BOTZ_SUPPORT",
     "photo_url": "https://i.ibb.co/Q9Hm3Dg/175540848.jpg",  # Replace with your actual image URL
@@ -46,8 +46,8 @@ async def accept_request(client, r):
         rm = InlineKeyboardMarkup([
             [InlineKeyboardButton('🎉 Add Me To Your Groups 🎉', url=f'http://t.me/{CONFIG["bot_username"]}?startgroup=true')],
             [
-                InlineKeyboardButton('OTT Updates', url=CONFIG["support_channel_url"]),
-                InlineKeyboardButton('Main Channel', url=CONFIG["main_channel_url"]),l)
+                InlineKeyboardButton('ʙᴏᴛ ꜱᴜᴩᴩᴏʀᴛ', url=CONFIG["support_channel_url"]),
+                InlineKeyboardButton('ᴍᴡ ʙᴏᴛᴢ', url=CONFIG["main_channel_url"])
             ]
         ])
 
@@ -79,6 +79,11 @@ async def accept_request(client, r):
         logger.info(f"Successfully processed join request from {r.from_user.username} in {r.chat.title}")
     
     except UserIsBlocked:
+        logger.warning(f"User {r.from_user.username} has blocked the bot.")
+    except PeerIdInvalid:
+        logger.error(f"Invalid Peer ID when processing request for {r.from_user.username}.")
+    except Exception as e:
+        logger.error(f"Unexpected error: {str(e)}")    except UserIsBlocked:
         logger.warning(f"User {r.from_user.username} has blocked the bot.")
     except PeerIdInvalid:
         logger.error(f"Invalid Peer ID when processing request for {r.from_user.username}.")
