@@ -83,7 +83,8 @@ async def accept_request(client, r):
     except PeerIdInvalid:
         logger.error(f"Invalid Peer ID when processing request for {r.from_user.username}.")
     except Exception as e:
-        logger.error(f"Unexpected error: {str(e)}")    except UserIsBlocked:
+        logger.error(f"Unexpected error: {str(e)}")   
+    except UserIsBlocked:
         logger.warning(f"User {r.from_user.username} has blocked the bot.")
     except PeerIdInvalid:
         logger.error(f"Invalid Peer ID when processing request for {r.from_user.username}.")
